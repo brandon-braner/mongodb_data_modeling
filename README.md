@@ -81,3 +81,39 @@ You should see that you have a total of 10,000 children, 100 staff members and 2
 ### Working with the Data.
 The rest of this tutorial will be walked through in the python notebook `notebooks/events.ipynb`
 
+## Orgiginal Data Schema
+
+```mermaid
+erDiagram
+    children ||--o{ dailyEvents : has
+    staff ||--o{ dailyEvents : manages
+
+    children {
+        ObjectId _id
+        string firstName
+        string lastName
+        date dateOfBirth
+        datetime enrollmentDate
+        array allergies
+        object emergencyContact
+    }
+
+    staff {
+        ObjectId _id
+        string firstName
+        string lastName
+        date hireDate
+        string role
+        array credentials
+    }
+
+    dailyEvents {
+        ObjectId _id
+        ObjectId childId
+        ObjectId staffId
+        datetime timestamp
+        string eventType
+        string details
+        string notes
+    }
+```
