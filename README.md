@@ -58,3 +58,26 @@ To connect to your database running in docker you can use the following command:
 
 We are going to be using Python and the [Pymongo](https://pymongo.readthedocs.io/en/stable/) library to connect to MongoDB. Along with that we will be managing our dependencies using [UV](https://docs.astral.sh/uv/). To install UV run the following command: `brew install uv`
 
+
+## Getting Started
+
+Here we go, now that we have all of our tools we can get started.
+
+### Create a Database
+First we will walk through how we model the data in MongoDB using a relational schema and then how we create database indexes to optimize our queries.
+
+Copy the `.env.example` in the root of this repo to a new file and rename it to `.env`. You shouldn't need to change anything in the `.env` file but if you want a new db name you can change it there.
+
+From the root of this repo run the following command to generate a "small" dataset of 10,000 children and 100 staff members and 200 events per child ranging : `uv run generate_data.py`.
+
+
+If you look at your data in MongoDB Compass you will see the following collections under daycare_db:
+- children
+- staff
+- dailyEvents
+
+You should see that you have a total of 10,000 children, 100 staff members and 2,000,000 events. All of these events should be created within the last 30 days. This is important for a reason that will be explained later in the tutorial. This is a small dataset so we can get a feel for how MongoDB works.
+
+### Working with the Data.
+The rest of this tutorial will be walked through in the python notebook `notebooks/events.ipynb`
+
